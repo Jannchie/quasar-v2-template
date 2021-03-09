@@ -63,7 +63,16 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <!-- Example with wrapping only one DOM element / component -->
+      <router-view v-slot="{ Component }">
+        <transition
+          mode="out-in"
+          enter-active-class="animated backInDown"
+          leave-active-class="animated fadeOutDown"
+        >
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </q-page-container>
 
     <q-footer reveal class="text-white text-caption q-px-sm q-py-xs bg-grey-8">
@@ -89,6 +98,7 @@ export default defineComponent({
     return {
       left: false,
       right: false,
+      btn: true,
     };
   },
   methods: {
