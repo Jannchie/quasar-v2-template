@@ -11,17 +11,35 @@
           Quasar v2 Template
         </q-toolbar-title>
 
-        <q-btn dense flat round icon="menu" @click="right = !right" />
+        <q-space />
+        <q-btn
+          size="sm"
+          :icon="
+            this.$q.dark.isActive
+              ? 'mdi-white-balance-sunny'
+              : 'mdi-weather-night'
+          "
+          round
+          push
+          @click="darkToggle"
+        />
       </q-toolbar>
     </q-header>
 
     <q-drawer show-if-above v-model="left" side="left" bordered>
-      <q-list bordered>
-        <q-item clickable v-ripple>
+      <q-list>
+        <q-item
+          v-for="menu in menuItemList"
+          :key="menu.title"
+          class="rounded-borders q-ma-xs"
+          style="border-radius: 16px"
+          clickable
+          v-ripple
+        >
           <q-item-section avatar>
-            <q-icon color="primary" name="mdi-home-outline" />
+            <q-icon color="primary" :name="menu.icon" />
           </q-item-section>
-          <q-item-section>Home</q-item-section>
+          <q-item-section>{{ menu.title }}</q-item-section>
         </q-item>
       </q-list>
       <!-- drawer content -->
@@ -41,15 +59,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  name: 'Error404',
+  name: 'MainLayout',
+  setup() {
+    let menuItemList = ref([
+      { icon: 'mdi-home-outline', title: 'Home' },
+      { icon: 'mdi-information', title: 'About' },
+      { icon: 'mdi-github', title: 'GitHub' },
+    ]);
+    return { menuItemList };
+  },
   data() {
     return {
       left: false,
       right: false,
     };
+  },
+  methods: {
+    darkToggle() {
+      this.$q.dark.toggle();
+      window.localStorage.setItem('__dark__', String(this.$q.dark.isActive));
+    },
   },
 });
 </script>
