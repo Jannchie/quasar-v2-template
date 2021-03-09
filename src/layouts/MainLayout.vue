@@ -31,6 +31,7 @@
         <q-item
           v-for="menu in menuItemList"
           :key="menu.title"
+          :to="menu.to"
           class="rounded-borders q-ma-xs"
           style="border-radius: 16px"
           clickable
@@ -40,6 +41,19 @@
             <q-icon color="primary" :name="menu.icon" />
           </q-item-section>
           <q-item-section>{{ menu.title }}</q-item-section>
+        </q-item>
+
+        <q-item
+          @click="toGithub"
+          class="rounded-borders q-ma-xs"
+          style="border-radius: 16px"
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-icon color="primary" name="mdi-github" />
+          </q-item-section>
+          <q-item-section>Github</q-item-section>
         </q-item>
       </q-list>
       <!-- drawer content -->
@@ -59,15 +73,15 @@
 </template>
 
 <script lang="ts">
+import { openURL } from 'quasar';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'MainLayout',
   setup() {
     let menuItemList = ref([
-      { icon: 'mdi-home-outline', title: 'Home' },
-      { icon: 'mdi-information', title: 'About' },
-      { icon: 'mdi-github', title: 'GitHub' },
+      { icon: 'mdi-home-outline', title: 'Home', to: '/' },
+      { icon: 'mdi-information', title: 'About', to: '/about' },
     ]);
     return { menuItemList };
   },
@@ -81,6 +95,9 @@ export default defineComponent({
     darkToggle() {
       this.$q.dark.toggle();
       window.localStorage.setItem('__dark__', String(this.$q.dark.isActive));
+    },
+    toGithub() {
+      openURL('https://github.com/Jannchie/quasar-v2-template');
     },
   },
 });
