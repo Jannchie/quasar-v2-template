@@ -79,18 +79,13 @@
           </q-item>
         </q-list>
       </q-scroll-area>
-      <!-- drawer content -->
     </q-drawer>
-    <q-drawer show-if-above v-model="right" side="right" bordered>
-      <!-- drawer content -->
-    </q-drawer>
-
+    <q-drawer show-if-above v-model="right" side="right" bordered> </q-drawer>
     <q-page-container>
-      <!-- Example with wrapping only one DOM element / component -->
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"
-          enter-active-class="animated backInDown"
+          enter-active-class="animated fadeInDown"
           leave-active-class="animated fadeOutDown"
         >
           <component :is="Component" />
