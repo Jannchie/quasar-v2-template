@@ -2,25 +2,27 @@
   <router-view />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
+import { useQuasar } from 'quasar';
 
 export default defineComponent({
   name: 'app',
   setup() {
+    onMounted(() => {
+      const q = useQuasar();
+      let dark = window.localStorage.getItem('__dark__');
+      switch (dark) {
+        case 'true':
+          q.dark.set(true);
+          break;
+        case 'false':
+          q.dark.set(false);
+          break;
+        default:
+          q.dark.set('auto');
+      }
+    });
     return {};
-  },
-  mounted() {
-    let dark = window.localStorage.getItem('__dark__');
-    switch (dark) {
-      case 'true':
-        this.$q.dark.set(true);
-        break;
-      case 'false':
-        this.$q.dark.set(false);
-        break;
-      default:
-        this.$q.dark.set('auto');
-    }
   },
 });
 </script>
