@@ -8,22 +8,20 @@
       <q-toolbar :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-2'">
         <q-btn dense flat round icon="menu" @click="miniState = !miniState" />
         <q-toolbar-title>
-          <q-avatar>
+          <q-avatar class="q-mr-sm">
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
           </q-avatar>
           Quasar v2 Template
         </q-toolbar-title>
 
         <q-space />
-        <q-btn
+        <q-toggle
+          v-model="dark"
           :icon="
             this.$q.dark.isActive
               ? 'mdi-white-balance-sunny'
               : 'mdi-weather-night'
           "
-          round
-          push
-          @click="darkToggle"
         />
       </q-toolbar>
     </q-header>
@@ -35,8 +33,7 @@
       side="left"
       :width="200"
       :breakpoint="500"
-      bordered
-      content-class="bg-grey-3"
+      :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-2'"
     >
       <q-scroll-area class="fit">
         <q-list>
@@ -45,7 +42,7 @@
             :key="menu.title"
             :to="menu.to"
             :active-class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-4'"
-            class="rounded-borders q-ma-xs"
+            class="q-ma-xs"
             style="border-radius: 16px"
             clickable
             v-ripple
@@ -124,6 +121,7 @@ export default defineComponent({
       btn: true,
       miniState: true,
       drawer: true,
+      dark: this.$q.dark.isActive,
     };
   },
   methods: {
@@ -133,6 +131,12 @@ export default defineComponent({
     },
     toGithub() {
       openURL('https://github.com/Jannchie/quasar-v2-template');
+    },
+  },
+  watch: {
+    dark(val) {
+      this.$q.dark.set(val);
+      window.localStorage.setItem('__dark__', String(this.$q.dark.isActive));
     },
   },
 });
