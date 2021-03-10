@@ -15,14 +15,7 @@
         </q-toolbar-title>
 
         <q-space />
-        <q-toggle
-          v-model="dark"
-          :icon="
-            this.$q.dark.isActive
-              ? 'mdi-white-balance-sunny'
-              : 'mdi-weather-night'
-          "
-        />
+        <dark-mode-toggle></dark-mode-toggle>
       </q-toolbar>
     </q-header>
 
@@ -103,9 +96,11 @@
 
 <script lang="ts">
 import { openURL } from 'quasar';
+import DarkModeToggle from 'src/components/DarkModeToggle.vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
+  components: { DarkModeToggle },
   name: 'MainLayout',
   setup() {
     let menuItemList = ref([
@@ -121,22 +116,11 @@ export default defineComponent({
       btn: true,
       miniState: true,
       drawer: true,
-      dark: this.$q.dark.isActive,
     };
   },
   methods: {
-    darkToggle() {
-      this.$q.dark.toggle();
-      window.localStorage.setItem('__dark__', String(this.$q.dark.isActive));
-    },
     toGithub() {
       openURL('https://github.com/Jannchie/quasar-v2-template');
-    },
-  },
-  watch: {
-    dark(val) {
-      this.$q.dark.set(val);
-      window.localStorage.setItem('__dark__', String(this.$q.dark.isActive));
     },
   },
 });
