@@ -70,7 +70,7 @@
         </q-list>
       </q-scroll-area>
     </q-drawer>
-    <q-drawer show-if-above v-model="right" side="right" bordered> </q-drawer>
+    <!-- <q-drawer show-if-above v-model="right" side="right" bordered> </q-drawer> -->
     <q-page-container>
       <router-view v-slot="{ Component }">
         <transition
@@ -106,6 +106,7 @@ export default defineComponent({
     let menuItemList = ref([
       { icon: 'mdi-home', title: 'Home', to: '/home' },
       { icon: 'mdi-information', title: 'About', to: '/about' },
+      { icon: 'mdi-chat', title: 'Chat', to: '/chat' },
     ]);
     return { menuItemList };
   },
