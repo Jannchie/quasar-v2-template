@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR lFr">
     <q-header
       reveal
-      :class="$q.dark.isActive ? 'text-grey-2' : 'text-dark'"
+      :class="$q.dark.isActive ? 'text-grey-2' : 'text-dark shadow-4'"
       height-hint="98"
     >
       <q-toolbar :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-2'">
@@ -44,7 +44,7 @@
             v-for="menu in menuItemList"
             :key="menu.title"
             :to="menu.to"
-            active-class="bg-grey-9"
+            :active-class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-4'"
             class="rounded-borders q-ma-xs"
             style="border-radius: 16px"
             clickable
@@ -98,7 +98,12 @@
       </router-view>
     </q-page-container>
 
-    <q-footer reveal class="text-white text-caption q-px-sm q-py-xs bg-grey-8">
+    <q-footer
+      reveal
+      :class="`${
+        $q.dark.isActive ? 'text-white bg-dark' : 'text-grey bg-white'
+      } text-caption q-px-sm q-py-xs`"
+    >
       Jannchie | jannchie@gmail.com
     </q-footer>
   </q-layout>
