@@ -2,8 +2,8 @@
   <q-page padding :style-fn="myTweak">
     <div class="row fit q-col-gutter-sm">
       <div class="col-12 col-sm-8 column q-col-gutter-sm">
-        <q-scroll-area class="col q-pt-none q-mt-sm">
-          <div class="q-pa-md bg-grey-2 rounded-borders">
+        <q-scroll-area class="col q-pt-none q-mt-sm bg-grey-2 rounded-xl">
+          <div class="q-pa-md">
             <q-chat-message
               name="me"
               avatar="https://cdn.quasar.dev/img/avatar4.jpg"
@@ -118,7 +118,7 @@
         </div>
       </div>
       <div class="col-12 col-sm-4">
-        <q-scroll-area class="fit bg-grey-2 rounded-borders">
+        <q-scroll-area class="fit bg-grey-2 rounded-xl">
           <q-list>
             <q-item v-for="i in 50" :key="i" clickable v-ripple>
               <q-item-section avatar>
