@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR lFr">
     <q-header
       reveal
-      :class="$q.dark.isActive ? 'text-grey-2' : 'text-dark shadow-4'"
+      :class="$q.dark.isActive ? 'text-grey-2' : 'text-dark'"
       height-hint="98"
     >
       <q-toolbar :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-2'">
@@ -48,7 +48,7 @@
             </q-item-section>
             <q-item-section>{{ menu.title }}</q-item-section>
           </q-item>
-
+          <q-separator inset />
           <q-item
             @click="toGithub"
             class="rounded-borders q-ma-xs"
@@ -62,6 +62,7 @@
                 name="mdi-github"
               />
             </q-item-section>
+
             <q-item-section>Github</q-item-section>
             <q-item-section side>
               <q-icon name="mdi-launch" color="grey" />
@@ -70,6 +71,7 @@
         </q-list>
       </q-scroll-area>
     </q-drawer>
+
     <!-- <q-drawer show-if-above v-model="right" side="right" bordered> </q-drawer> -->
     <q-page-container>
       <router-view v-slot="{ Component }">
@@ -105,8 +107,13 @@ export default defineComponent({
   setup() {
     let menuItemList = ref([
       { icon: 'mdi-home', title: 'Home', to: '/home' },
-      { icon: 'mdi-information', title: 'About', to: '/about' },
+      {
+        icon: 'mdi-view-dashboard',
+        title: 'Dashboard',
+        to: '/dashboard',
+      },
       { icon: 'mdi-chat', title: 'Chat', to: '/chat' },
+      { icon: 'mdi-information', title: 'About', to: '/about' },
     ]);
     return { menuItemList };
   },

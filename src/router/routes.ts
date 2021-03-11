@@ -18,6 +18,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/Home.vue'),
       },
       {
+        path: 'dashboard',
+        component: () => import('pages/Dashboard.vue'),
+      },
+      {
         path: 'chat',
         component: () => import('pages/Chat.vue'),
       },
