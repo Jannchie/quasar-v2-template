@@ -25,6 +25,10 @@ const routes: RouteRecordRaw[] = [
         path: 'chat',
         component: () => import('pages/Chat.vue'),
       },
+      {
+        path: 'author',
+        component: () => import('pages/Author.vue'),
+      },
     ],
   },
   // Always leave this as last one,

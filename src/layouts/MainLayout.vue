@@ -113,6 +113,7 @@ export default defineComponent({
         to: '/dashboard',
       },
       { icon: 'mdi-chat', title: 'Chat', to: '/chat' },
+      { icon: 'mdi-account', title: 'Author', to: '/author' },
       { icon: 'mdi-information', title: 'About', to: '/about' },
     ]);
     return { menuItemList };
