@@ -28,7 +28,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
-    boot: ['i18n', 'axios'],
+    boot: ['i18n', 'axios', 'notify-defaults'],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ['app.sass'],
@@ -88,6 +88,9 @@ module.exports = configure(function (/* ctx */) {
         loadingBar: {
           color: 'light-blue-6',
         },
+        notify: {
+          /* look at QUASARCONFOPTIONS from the API card */
+        },
       },
 
       // iconSet: 'material-icons', // Quasar icon set
@@ -101,7 +104,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['LoadingBar'],
+      plugins: ['LoadingBar', 'Notify'],
     },
 
     animations: 'all', // --- includes all animations

@@ -2,7 +2,7 @@
   <q-page padding :style-fn="myTweak">
     <div class="row fit q-col-gutter-sm">
       <div class="col-12 col-sm-8 column q-col-gutter-sm">
-        <q-scroll-area class="col q-pt-none q-mt-sm bg-grey-2 rounded-xl">
+        <q-scroll-area class="col q-pt-none q-mt-sm bg-grey-2 rounded-md">
           <div class="q-pa-md">
             <q-chat-message
               name="me"
@@ -97,7 +97,7 @@
             />
           </div>
         </q-scroll-area>
-        <div class="col-auto">
+        <div class="col-auto bg-grey-2 rounded-md q-mt-sm q-pa-sm">
           <div class="column q-col-gutter-sm">
             <div class="col">
               <q-input outlined v-model="text" outline autogrow />
@@ -107,7 +107,7 @@
                 <q-space />
                 <q-btn
                   style="max-width: 50px"
-                  class="col-12 col-sm-2"
+                  class="col-12 col-sm-2 rounded"
                   color="primary"
                   push
                   icon="send"
@@ -118,7 +118,7 @@
         </div>
       </div>
       <div class="col-12 col-sm-4">
-        <q-scroll-area class="fit bg-grey-2 rounded-xl">
+        <q-scroll-area class="fit bg-grey-2 rounded-md">
           <q-list>
             <q-item v-for="i in 50" :key="i" clickable v-ripple>
               <q-item-section avatar>
