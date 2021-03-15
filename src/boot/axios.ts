@@ -1,12 +1,11 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
-import { Notify, useQuasar } from 'quasar';
+import { Notify } from 'quasar';
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $axios: AxiosInstance;
   }
 }
-const $q = useQuasar();
 
 const api = axios.create({ baseURL: 'https://api.example.com' });
 api.interceptors.response.use(
