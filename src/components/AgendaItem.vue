@@ -81,8 +81,8 @@ import { defineComponent, computed, ref } from 'vue';
 
 export default defineComponent({
   props: {
-    title: { default: '议程名称' },
-    desc: { default: '议程描述' },
+    title: { default: 'Agenda Name' },
+    desc: { default: 'Agenda Desc' },
     pro: { default: 0 },
     con: { default: 0 },
   },
