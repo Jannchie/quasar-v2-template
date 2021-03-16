@@ -29,6 +29,10 @@ const routes: RouteRecordRaw[] = [
         path: 'author',
         component: () => import('pages/Author.vue'),
       },
+      {
+        path: 'agenda',
+        component: () => import('pages/Agenda.vue'),
+      },
     ],
   },
   // Always leave this as last one,

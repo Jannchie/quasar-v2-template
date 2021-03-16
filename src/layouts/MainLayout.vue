@@ -115,6 +115,7 @@ export default defineComponent({
       { icon: 'mdi-chat', title: 'Chat', to: '/chat' },
       { icon: 'mdi-account', title: 'Author', to: '/author' },
       { icon: 'mdi-information', title: 'About', to: '/about' },
+      { icon: 'mdi-view-agenda', title: 'Agenda', to: '/agenda' },
     ]);
     return { menuItemList };
   },
