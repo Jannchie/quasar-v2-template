@@ -18,13 +18,22 @@
         </q-card>
       </j-col>
     </j-row>
-    <j-row>
+    <j-row class="q-mb-sm">
       <j-col v-for="i in 2" :key="i" class="col-12 col-sm-6">
         <progress-card
           icon="mdi-progress-check"
           :title="`Progress Task ${i}`"
           :progress="i * 0.27 ** 1.1"
         ></progress-card>
+      </j-col>
+    </j-row>
+    <j-row class="q-mb-sm">
+      <j-col v-for="i in 2" :key="i" class="col-12 col-sm-4">
+        <stat-card
+          icon="mdi-account"
+          title="Current Value"
+          value="1251"
+        ></stat-card>
       </j-col>
     </j-row>
   </q-page>
@@ -34,9 +43,10 @@
 import JCol from 'src/components/JCol.vue';
 import JRow from 'src/components/JRow.vue';
 import ProgressCard from 'src/components/ProgressCard.vue';
+import StatCard from 'src/components/StatCard.vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
-  components: { JRow, ProgressCard },
+  components: { JRow, ProgressCard, StatCard },
 });
 JCol;
 </script>

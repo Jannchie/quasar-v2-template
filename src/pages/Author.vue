@@ -76,8 +76,13 @@
         </q-card>
       </j-col>
       <j-col>
-        <q-card flat class="purple-gradient fit" @click="toAuthorGithub">
-          <div v-ripple class="q-pa-lg text-center text-white text-h6">
+        <q-card
+          v-ripple
+          flat
+          class="purple-gradient fit cursor-pointer"
+          @click.stop="toAuthorGithub"
+        >
+          <div class="q-pa-lg text-center text-white text-h6">
             <q-icon size="lg" name="mdi-github" />
             <br />
             <div class="gt-sm">To Github Page</div>
