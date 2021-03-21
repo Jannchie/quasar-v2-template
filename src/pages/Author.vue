@@ -1,6 +1,87 @@
 <template>
   <q-page padding>
     <div class="text-h4 q-my-xl">Author Information</div>
+    <j-row class="q-mb-sm" v-if="data">
+      <j-col class="column col-12 col-md-3">
+        <q-card bordered flat class="q-mb-sm">
+          <q-card-section class="text-center">
+            <q-avatar class="fit">
+              <img :src="data.avatar_url" :alt="data.name" />
+            </q-avatar>
+          </q-card-section>
+        </q-card>
+        <q-card bordered flat class="">
+          <q-card-section>
+            <div class="ellipsis">
+              <q-icon name="mdi-domain" left /> {{ data.company }}
+            </div>
+            <div class="ellipsis">
+              <q-icon name="mdi-email" left />
+              {{ data.email ?? 'It is Secret' }}
+            </div>
+            <div class="ellipsis">
+              <q-icon name="mdi-post" left /> {{ data.blog }}
+            </div>
+            <div class="ellipsis">
+              <q-icon name="mdi-twitter" left />
+              {{ data.twitter_username ?? 'None' }}
+            </div>
+          </q-card-section>
+        </q-card>
+      </j-col>
+      <j-col class="col-12 col-md-9 column">
+        <q-card bordered flat class="col col-auto q-mb-sm">
+          <q-card-section v-if="following">
+            <div class="text-caption text-grey-6">Following</div>
+            <q-avatar
+              v-for="user in following"
+              :key="user.name"
+              class="q-ma-xs ellipsis"
+              size="lg"
+            >
+              <img :src="user.avatar_url" />
+            </q-avatar>
+          </q-card-section>
+        </q-card>
+        <div class="col-auto row q-col-gutter-sm">
+          <div class="col-12 col-sm-4">
+            <stat-card
+              title="Public Repositories"
+              icon="mdi-account"
+              :value="data.public_repos"
+            ></stat-card>
+          </div>
+          <div class="col-12 col-sm-4">
+            <stat-card
+              title="Followers"
+              icon="mdi-account"
+              :value="data.followers"
+            ></stat-card>
+          </div>
+          <div class="col-12 col-sm-4">
+            <stat-card
+              title="Following"
+              icon="mdi-account"
+              :value="data.following"
+            ></stat-card>
+          </div>
+        </div>
+        <div v-if="repos" class="col-auto row q-col-gutter-sm">
+          <div v-for="(rep, i) in repos" :key="i" class="col-4">
+            <q-card bordered flat class="fit" style="min-height: 80px">
+              <q-card-actions>
+                <div class="text-body1">
+                  {{ rep.name }}
+                </div>
+                <div class="text-caption ellipsis-2">
+                  {{ rep.description }}
+                </div>
+              </q-card-actions>
+            </q-card>
+          </div>
+        </div>
+      </j-col>
+    </j-row>
     <j-row v-if="data">
       <j-col class="col-12 col-sm-4">
         <transition
@@ -97,12 +178,15 @@ import { defineComponent, ref } from 'vue';
 import { api } from 'boot/axios';
 import { openURL, useQuasar } from 'quasar';
 import { GithubUser } from '../models/github-user-info';
+import { GithubRepos } from '../models/github-repos';
 import JRow from 'src/components/JRow.vue';
 import JCol from 'src/components/JCol.vue';
+import StatCard from 'src/components/StatCard.vue';
 export default defineComponent({
   setup() {
     const $q = useQuasar();
     const data = ref<GithubUser>();
+    const following = ref<Array<GithubUser>>();
     void api
       .get('https://api.github.com/users/jannchie')
       .then((res) => {
@@ -116,9 +200,18 @@ export default defineComponent({
           icon: 'report_problem',
         });
       });
-    return { data };
+    void api
+      .get('https://api.github.com/users/jannchie/following')
+      .then((res) => {
+        following.value = res.data as Array<GithubUser>;
+      });
+    const repos = ref<Array<GithubRepos>>();
+    void api.get('https://api.github.com/users/jannchie/repos').then((r) => {
+      repos.value = r.data as Array<GithubRepos>;
+    });
+    return { data, following, repos };
   },
-  components: { JRow, JCol },
+  components: { JRow, JCol, StatCard },
   methods: {
     toAuthorGithub() {
       if (this.data) {
