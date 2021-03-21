@@ -36,6 +36,32 @@
         ></stat-card>
       </j-col>
     </j-row>
+    <j-row class="q-mb-sm">
+      <j-col v-for="i in 3" :key="i" class="col-12 col-sm-4">
+        <q-card bordered flat>
+          <q-card-section>
+            <div class="text-h6">Our Changing Planet</div>
+            <div class="text-subtitle2">by John Doe</div>
+          </q-card-section>
+          <q-card-section>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          </q-card-section>
+        </q-card>
+      </j-col>
+    </j-row>
+    <j-row class="q-mb-sm">
+      <j-col v-for="i in 3" :key="i" class="col-12 col-sm-4">
+        <q-card bordered flat>
+          <q-card-section>
+            <div class="text-h6">Our Changing Planet</div>
+            <div class="text-subtitle2">by John Doe</div>
+          </q-card-section>
+          <q-card-section>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          </q-card-section>
+        </q-card>
+      </j-col>
+    </j-row>
   </q-page>
 </template>
 
