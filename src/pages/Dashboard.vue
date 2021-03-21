@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <!-- content -->
-    <div class="text-h4 q-mb-xl">Dashboard</div>
+    <div class="text-h4 q-my-xl">Dashboard</div>
     <div class="row text-grey-6 text-body1">
       <p>This is the dashboard page.</p>
     </div>

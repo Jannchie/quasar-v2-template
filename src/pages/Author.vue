@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="text-h4 q-mb-xl">Author Information</div>
+    <div class="text-h4 q-my-xl">Author Information</div>
     <j-row v-if="data">
       <j-col class="col-12 col-sm-4">
         <transition

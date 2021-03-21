@@ -1,9 +1,5 @@
 <template>
-  <q-card
-    bordered
-    flat
-    style="margin-top: 14px; vertical-align: text-top; min-height: 128px"
-  >
+  <q-card bordered flat style="margin-top: 14px; vertical-align: text-top">
     <div class="row" style="position: absolute; margin-top: -14px; left: 14px">
       <q-card class="col-auto bg-primary offset-card rounded q-pa-sm">
         <q-icon v-if="icon" color="grey-2" left size="xs" :name="icon" />

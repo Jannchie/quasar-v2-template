@@ -1,19 +1,15 @@
 <template>
-  <q-card
-    bordered
-    flat
-    style="margin-top: 14px; vertical-align: text-top; min-height: 128px"
-  >
+  <q-card bordered flat style="margin-top: 14px; vertical-align: text-top">
     <div class="row" style="position: absolute; margin-top: -14px; left: 14px">
       <q-card class="col-auto bg-primary offset-card rounded q-pa-sm">
         <q-icon v-if="icon" color="grey-2" size="64px" :name="icon" />
       </q-card>
     </div>
     <q-card-section class="text-right" style="padding-left: 86px">
-      <div class="text-h6">
+      <div class="text-caption text-grey-6">
         {{ title }}
       </div>
-      <div class="text-body2">{{ value }}</div>
+      <div class="text-h5">{{ value }}</div>
     </q-card-section>
   </q-card>
 </template>
