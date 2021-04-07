@@ -1,13 +1,13 @@
 <template>
   <div style="height: 100vh">
-    <q-layout view="lhh LpR lff" container class="shadow-2 rounded-borders fit">
+    <q-layout view="hhh LpR lff" container class="shadow-2 rounded-borders fit">
       <q-header
         reveal
         :class="$q.dark.isActive ? 'text-grey-2' : 'text-dark'"
         height-hint="98"
       >
         <q-toolbar :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-2'">
-          <q-btn dense flat round icon="menu" @click="miniState = !miniState" />
+          <q-btn dense flat round icon="menu" @click="menuBtnHandler" />
           <q-toolbar-title>
             <q-avatar class="q-mr-sm">
               <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
@@ -22,11 +22,10 @@
 
       <q-drawer
         :mini="miniState"
-        show-if-above
         v-model="left"
         side="left"
+        :overlay="overlay"
         :width="200"
-        :breakpoint="500"
         :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-2'"
       >
         <q-scroll-area class="fit">
@@ -123,16 +122,29 @@ export default defineComponent({
   },
   data() {
     return {
-      left: false,
+      left: this.$q.screen.width < this.$q.screen.sizes.md ? false : true,
       right: false,
       btn: true,
       miniState: true,
       drawer: true,
+      overlay: false,
     };
   },
   methods: {
     toGithub() {
       openURL('https://github.com/Jannchie/quasar-v2-template');
+    },
+    menuBtnHandler() {
+      if (this.$q.screen.width < this.$q.screen.sizes.md) {
+        // mobile
+        this.miniState = true;
+        this.left = !this.left;
+        this.overlay = true;
+      } else {
+        this.left = true;
+        this.miniState = !this.miniState;
+        this.overlay = false;
+      }
     },
   },
 });
